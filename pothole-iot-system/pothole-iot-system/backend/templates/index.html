@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pothole Detection Dashboard</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; background: #f7f7f7; }
+    h1 { margin-bottom: 8px; }
+    p { color: #444; }
+    table { border-collapse: collapse; width: 100%; background: white; }
+    th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+    th { background: #efefef; }
+    .empty { padding: 16px; background: white; border: 1px solid #ddd; }
+  </style>
+</head>
+<body>
+  <h1>IoT Pothole Detection Dashboard</h1>
+  <p>Detected potholes based on ultrasonic distance deviations.</p>
+
+  {% if potholes %}
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Device</th>
+        <th>Distance (cm)</th>
+        <th>Baseline (cm)</th>
+        <th>Deviation (cm)</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th>Timestamp</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for p in potholes %}
+      <tr>
+        <td>{{ p.id }}</td>
+        <td>{{ p.device_id }}</td>
+        <td>{{ p.distance_cm }}</td>
+        <td>{{ p.baseline_cm }}</td>
+        <td>{{ p.deviation_cm }}</td>
+        <td>{{ p.latitude }}</td>
+        <td>{{ p.longitude }}</td>
+        <td>{{ p.timestamp }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <div class="empty">No potholes detected yet. Run the simulator to generate sample data.</div>
+  {% endif %}
+</body>
+</html>

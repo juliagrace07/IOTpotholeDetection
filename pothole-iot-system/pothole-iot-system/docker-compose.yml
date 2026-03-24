@@ -1,0 +1,10 @@
+version: "3.9"
+
+services:
+  pothole-api:
+    build: .
+    container_name: pothole-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
